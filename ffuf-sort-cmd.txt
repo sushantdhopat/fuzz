@@ -1,0 +1,2 @@
+ffuf -w fuzz.txt -u /FUZZ -recursion -ac -recursion-depth 1 -o test.json
+cat test.json | jq -r '.results[] | "\(.length)"+ " " +"\(.url)" + " " + "\(.status)"' | sort -unt " " -k "1,1" | grep 200
